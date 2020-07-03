@@ -4,6 +4,9 @@ import Header from './Header'
 import { Button, Paper, TextField } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import Grid from '@material-ui/core/Grid';
+import * as Yup from 'yup';
+import { useFormik } from 'formik';
+
 
 
 
@@ -87,6 +90,47 @@ export default function MaterialTableDemo() {
             }
         ],
     });
+
+    const formik = useFormik({
+        
+        initialValues: {
+            du: "",
+            project_name: "",
+            risk_type: "",
+            internal_external: "",
+            owner: "",
+            severity: "",
+            priority: "",
+            risk_raised_date: "",
+            status: "",
+            age: ""
+        },
+        validationSchema: Yup.object({
+            du: Yup.string().nullable()      
+              .required('DU Required'),
+            project_name: Yup.string().nullable()      
+              .required('ProjectName Required'),
+            risk_type: Yup.string().nullable()      
+              .required('Risk Type Required'),
+            internal_external: Yup.string().nullable()      
+              .required('Internal External Required'),
+            owner: Yup.string().nullable()      
+              .required('Owner Required'),
+            severity: Yup.string().nullable()      
+              .required('Severity Required'),
+            priority: Yup.string().nullable()      
+              .required('Priority Required'),
+            risk_raised_date: Yup.string().nullable()      
+              .required('Risk Type Required'),
+            status: Yup.string().nullable()      
+              .required('Status Required'),
+            age: Yup.string().nullable()      
+            .required('Age Required'),
+            }),   
+        onSubmit: values => {
+        // handleSubmit()
+        },
+      });
 
     const [values, setValues] = useState([]);
 
