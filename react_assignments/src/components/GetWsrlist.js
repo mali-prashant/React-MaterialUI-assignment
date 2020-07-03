@@ -136,8 +136,6 @@ export default function MaterialTableDemo() {
 
     const handleChange = (name) => (event) => {
         setValues({ ...values, [name]: event.target.value });
-        console.log(values);
-
     };
 
 
@@ -178,7 +176,13 @@ export default function MaterialTableDemo() {
                                                             label = "Project Name"
                                                             variant="outlined"
                                                             onChange={handleChange("project_name")}
+                                                            onBlur={formik.handleBlur}
                                                             />
+                                                             {formik.touched.project_name && formik.errors.project_name ? (
+                                                        <div style={{ marginLeft: "45px",marginTop:"9px",color:"red" }}>
+                                                        {formik.errors.project_name}
+                                                        </div>
+                                                    ) : null}
                                                     </div>
                                                 </Grid>
                                                 <Grid item xs={4}>
@@ -188,14 +192,21 @@ export default function MaterialTableDemo() {
                                                             name="du"
                                                             options = {du_list}
                                                             onChange={(event, du) => {
+                                                                formik.setFieldValue('du',du)
                                                                 setValues({ ...values, du });
                                                             }}
-                                                            renderInput={params => <TextField {...params} id="t1" label="DU" variant="outlined" InputLabelProps={{ shrink: true }}
+                                                            onBlur={formik.handleBlur}
+                                                            renderInput={params => <TextField {...params} error={formik.touched.du && formik.errors.du} id="t1" label="DU" variant="outlined" InputLabelProps={{ shrink: true }}
                                                             // required={true}
                                                             />
                                                             }
                                                         />
                                                     </div>
+                                                    {formik.touched.du && formik.errors.du ? (
+                                                        <div style={{ marginLeft: "45px",marginTop:"9px",color:"red" }}>
+                                                        {formik.errors.du}
+                                                        </div>
+                                                    ) : null}
                                                 </Grid>
 
                                                 <Grid item xs={4}>
@@ -205,14 +216,20 @@ export default function MaterialTableDemo() {
                                                             name="risk_type"
                                                             options = {risk_type}
                                                             onChange={(event, risk_type) => {
+                                                                formik.setFieldValue('risk_type', risk_type)
                                                                 setValues({ ...values, risk_type });
                                                             }}
-                                                            renderInput={params => <TextField {...params} id="t1" label="Risk Type" variant="outlined" InputLabelProps={{ shrink: true }}
+                                                            renderInput={params => <TextField {...params} error={formik.touched.risk_type && formik.errors.risk_type}  id="t1" label="Risk Type" variant="outlined" InputLabelProps={{ shrink: true }}
                                                             // required={true}
                                                             />
                                                             }
                                                         />
                                                     </div>
+                                                    {formik.touched.risk_type && formik.errors.risk_type ? (
+                                                        <div style={{ marginLeft: "45px",marginTop:"9px",color:"red" }}>
+                                                        {formik.errors.risk_type}
+                                                        </div>
+                                                    ) : null}
                                                 </Grid>
                                                 <Grid item xs={4}>
                                                     <div>
@@ -221,14 +238,18 @@ export default function MaterialTableDemo() {
                                                             name="internal_external"
                                                             options = {internal_external}
                                                             onChange={(event, internal_external) => {
+                                                                formik.setFieldValue('internal_external', internal_external)
                                                                 setValues({ ...values, internal_external });
                                                             }}
-                                                            // style={{ width: 200, marginTop: "16px", marginLeft: "35px" }}
-                                                            renderInput={params => <TextField {...params} id="t2" label="Internal/External" variant="outlined" InputLabelProps={{ shrink: true }}
-                                                            // required={true}
+                                                            renderInput={params => <TextField {...params} error={formik.touched.internal_external && formik.errors.internal_external} id="t2" label="Internal/External" variant="outlined" InputLabelProps={{ shrink: true }}
                                                             />}
                                                         />
                                                     </div>
+                                                       {formik.touched.internal_external && formik.errors.internal_external ? (
+                                                        <div style={{ marginLeft: "35px",marginTop:"9px",color:"red" }}>
+                                                        {formik.errors.internal_external}
+                                                        </div>
+                                                    ) : null}
                                                 </Grid>
                                                 <Grid item xs={4}>
                                                     <div>
@@ -237,14 +258,19 @@ export default function MaterialTableDemo() {
                                                             name="owner"
                                                             options = { owners }
                                                             onChange={(event, owner) => {
+                                                                formik.setFieldValue('owner', owner)
                                                                 setValues({ ...values, owner });
                                                             }}
-                                                            renderInput={params => <TextField {...params} label="Owner" variant="outlined" InputLabelProps={{ shrink: true }}
+                                                            renderInput={params => <TextField {...params} error={formik.touched.owner && formik.errors.owner} label="Owner" variant="outlined" InputLabelProps={{ shrink: true }}
                                                             required={true}
                                                             />}
                                                         />
                                                     </div>
-
+                                                    {formik.touched.owner && formik.errors.owner ? (
+                                                        <div style={{ marginLeft: "35px",marginTop:"9px",color:"red" }}>
+                                                        {formik.errors.owner}
+                                                        </div>
+                                                    ) : null}
                                                 </Grid>
 
                                                 <Grid item xs={4}>
